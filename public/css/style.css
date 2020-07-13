@@ -1,0 +1,10 @@
+.input_form {
+    padding: 40px;
+    margin: 40px;
+    box-shadow: 6px 6px 18px 0px rgba(0,0,0,0.3);
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
