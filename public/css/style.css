@@ -1,7 +1,7 @@
-.input_form {
+.form_with_shadow {
     padding: 40px;
     margin: 40px;
-    box-shadow: 6px 6px 18px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 2px 18px 0px rgba(0,0,0,0.3);
 }
 
 .error {

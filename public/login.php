@@ -1,10 +1,24 @@
+<?php
+require_once ("../include/Database/UserDB.php");
 
+if(isset($_POST["submit"]))
+{
+    $db = new UserDB();
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    if($db->validateLogin($username,$password))
+        echo "<script>alert('Logged In Successfully!')</script>";
+    else
+        echo "<script>alert('Invalid Username and/or Password')</script>";
+
+}
+?>
 
 <?php require_once ("../include/header.php");?>
 <script type="text/javascript" src="javascript/jquery.validate.min.js"></script>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 ml-auto mr-auto input_form">
+        <div class="col-lg-4 ml-auto mr-auto form_with_shadow">
             <h3>Login Now!</h3>
 
             <form name="login_form" action="login.php" method="post">
@@ -27,7 +41,7 @@ $(document).ready(function () {
 
     $.validator.addMethod("validUsername", function (value, element) {
         return /^[a-zA-Z0-9_.-]+$/.test(value);
-    }, "The username cannot have white spaces");
+    }, "The username can only contain letters, numbers, hyphen(-), period(.) and underscore(_)");
 
     $("form[name='login_form']").validate({
         rules: {
@@ -43,7 +57,6 @@ $(document).ready(function () {
         messages: {
             username: {
                 required: "Username is required field",
-                validUsername: "Username cannot contain white spaces"
             },
             password: {
                 required: "Password is required field",
