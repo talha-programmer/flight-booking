@@ -78,10 +78,11 @@ if(isset($_POST["submit"]))
                     required: true
                 },
                 last_name: {
-                  required: true
+                    required: true
                 },
                 email: {
-                  required: true
+                    required: true,
+                    email: true,
                 },
                 username: {
                     required: true,

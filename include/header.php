@@ -6,7 +6,12 @@
     <script rel="script" type="text/javascript" src="javascript/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!-- Google Fonts: Raleway and Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Source+Sans+Pro&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
 </head>
 <body>

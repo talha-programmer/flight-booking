@@ -1,10 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Raleway', 'sans-serif';
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .form_with_shadow {
     padding: 40px;
     margin: 40px;
     box-shadow: 0px 2px 18px 0px rgba(0,0,0,0.3);
 }
 
+/*Error labels*/
 .error {
     color: red;
     font-size: small;
+}
+
+#section_1 {
+    background-image: url("../images/flight1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.section_1_overlay {
+    background-color: rgba(31, 31, 31, 0.4);
+}
+
+#section_1 h1 {
+    color: white;
+}
+
+.btn_book_now {
+    color: white;
+    font-size: x-large;
+    padding: 20px 40px;
+    margin-top: 5px;
+    background-color: #092140fa;
+    border-color: #092140fa;
+    text-transform: uppercase;
+}
+
+.shadow_box {
+    box-shadow: 0 0px 6px rgba(0,0,0, .2);
+    border-radius: 10px;
+    padding: 20px;
+    height: 200px;
+    margin: 30px;
+}
+
+#section_3 {
+    color: white;
+    background-color: #092140fa;
+}
+
+.register_button {
+    font-size: x-large;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-color: white;
 }
