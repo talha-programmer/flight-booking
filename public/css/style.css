@@ -1,3 +1,4 @@
+/*-------Generic CSS----------*/
 * {
     margin: 0;
     padding: 0;
@@ -7,20 +8,20 @@ body{
     font-family: 'Raleway', 'sans-serif';
     overflow-x: hidden;
     overflow-y: scroll;
+    min-height: 100vh;
 }
 
-.form_with_shadow {
-    padding: 40px;
-    margin: 40px;
-    box-shadow: 0px 2px 18px 0px rgba(0,0,0,0.3);
+p {
+    text-align: justify;
 }
 
-/*Error labels*/
-.error {
-    color: red;
-    font-size: small;
+.btn-primary {
+    background-color: #092140fa;
+    border-color: #092140fa;
 }
 
+
+/*--------Home Page-------*/
 #section_1 {
     background-image: url("../images/flight1.jpg");
     background-size: cover;
@@ -40,8 +41,6 @@ body{
     font-size: x-large;
     padding: 20px 40px;
     margin-top: 5px;
-    background-color: #092140fa;
-    border-color: #092140fa;
     text-transform: uppercase;
 }
 
@@ -63,4 +62,71 @@ body{
     padding: 10px 20px;
     background-color: transparent;
     border-color: white;
+}
+
+.footer {
+    background-color: #092140fa;
+}
+
+#copyright p, #copyright a {
+    text-align: center;
+    color: white;
+}
+
+
+.testimonial{
+    background-image: url("../images/flight2.jpg");
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+}
+
+.testimonial-overlay{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: rgba(31, 31, 31, 0.7);
+}
+
+.carousel-indicators{
+    bottom: -30px;
+}
+
+
+.testimonial-caption{
+    padding-bottom: 70px;
+
+}
+
+.testimonial-caption h2 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+
+.testimonial-caption p{
+    color: white;
+    font-size: 18px;
+    line-height: 20px;
+    padding-top: 50px;
+    font-weight: 700;
+}
+
+/*Login and Registration forms*/
+.form_with_shadow {
+    padding: 40px;
+    margin: 40px;
+    box-shadow: 0px 2px 18px 0px rgba(0,0,0,0.3);
+}
+
+
+/*Error labels on forms*/
+.error {
+    color: red;
+    font-size: small;
 }

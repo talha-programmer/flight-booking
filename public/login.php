@@ -16,7 +16,7 @@ if(isset($_POST["submit"]))
 
 <?php require_once ("../include/header.php");?>
 <script type="text/javascript" src="javascript/jquery.validate.min.js"></script>
-<div class="container">
+<div class="container" style="min-height: 83vh;">
     <div class="row">
         <div class="col-lg-4 ml-auto mr-auto form_with_shadow">
             <h3>Login Now!</h3>
