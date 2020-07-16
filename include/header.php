@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Flight Booking System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script rel="script" type="text/javascript" src="javascript/jquery.min.js"></script>
     <script rel="script" type="text/javascript" src="javascript/bootstrap.min.js"></script>
 

@@ -44,7 +44,7 @@
                 <h2>Register now for free to access all of our services</h2>
             </div>
             <div class="col-md-3">
-                <a class="btn btn-primary register_button">Register Now</a>
+                <a class="btn btn-primary register_button" href="register.php">Register Now</a>
             </div>
         </div>
     </div>
