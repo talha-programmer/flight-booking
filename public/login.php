@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php
 require_once ("../include/Database/UserDB.php");
 
@@ -6,10 +7,17 @@ if(isset($_POST["submit"]))
     $db = new UserDB();
     $username = $_POST["username"];
     $password = $_POST["password"];
-    if($db->validateLogin($username,$password))
-        echo "<script>alert('Logged In Successfully!')</script>";
+    if($user_id = $db->validateLogin($username,$password))
+    {
+        $_SESSION['message_success'] = "Logged In Successfully!";
+        $_SESSION['username'] = $username;
+        $_SESSION['user_id'] = $user_id;
+        var_dump($_SESSION);
+        header("location: index.php");
+        exit;
+    }
     else
-        echo "<script>alert('Invalid Username and/or Password')</script>";
+        $_SESSION['message_error'] = "Invalid username and/or password!";
 
 }
 ?>

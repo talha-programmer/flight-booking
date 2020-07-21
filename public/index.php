@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php require_once ("../include/header.php"); ?>
 
 <div id="section_1">

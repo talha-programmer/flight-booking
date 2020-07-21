@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 15, 2020 at 05:31 PM
+-- Generation Time: Jul 21, 2020 at 06:38 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.5
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
 --
 
 INSERT INTO `user_profile` (`profile_id`, `user_id`, `first_name`, `last_name`, `email`, `phone_number`) VALUES
-(1, 1, 'Irfan', 'Khan', 'talha@sample.com', '0300-5900928');
+(1, 1, 'Talha', 'Abbasi', 'talha@none.com', '0399-9388229');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

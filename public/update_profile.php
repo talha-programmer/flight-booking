@@ -1,25 +1,28 @@
-<?php session_start();?>
 <?php
+session_start();
+if(!isset($_SESSION['first_name']))
+{
+    header('Location: index.php');
+    exit;
+}
 require_once ("../include/Database/UserDB.php");
 
 if(isset($_POST["submit"]))
 {
     $db = new UserDB();
+    $user_id = $_SESSION['user_id'];
     $data = array(
         "first_name" => $_POST["first_name"],
         "last_name" => $_POST["last_name"],
         "email" => $_POST["email"],
-        "phone_number" => $_POST["phone_number"],
-        "username" => $_POST["username"],
-        "password" => $_POST["password"]
+        "phone_number" => $_POST["phone_number"]
     );
-    if($db->createProfile($data))
-        $_SESSION['message_success'] = "Profile created successfully!";
+    if($db->updateProfile($user_id, $data))
+        $_SESSION['message_success'] = "Profile updated successfully!";
     else
-        $_SESSION['message_error'] = "Profile creation failed!";
-
-
-
+        $_SESSION['message_error'] = "Profile update failed!";
+    header('Location: profile.php');
+    exit;
 }
 ?>
 
@@ -29,36 +32,22 @@ if(isset($_POST["submit"]))
     <div class="row">
         <div class="col-lg-4 ml-auto mr-auto form_with_shadow">
             <h3>Register Now!</h3>
-
-            <form name="registration_form" action="register.php" method="post">
+            <form name="registration_form" action="update_profile.php" method="post">
                 <div class="form-group">
                     <label for="first-name-input">First Name</label>
-                    <input type="text" name="first_name" class="form-control" id="first-name-input">
+                    <input type="text" name="first_name" class="form-control" id="first-name-input" value="<?=$_SESSION['first_name']?>">
                 </div>
                 <div class="form-group">
                     <label for="last-name-input">Last Name</label>
-                    <input type="text" name="last_name" class="form-control" id="last-name-input">
+                    <input type="text" name="last_name" class="form-control" id="last-name-input" value="<?=$_SESSION['last_name']?>">
                 </div>
                 <div class="form-group">
                     <label for="email-input">Email</label>
-                    <input type="email" name="email" class="form-control" id="email-input">
+                    <input type="email" name="email" class="form-control" id="email-input" value="<?=$_SESSION['email']?>">
                 </div>
                 <div class="form-group">
                     <label for="phone-number-input">Phone Number</label>
-                    <input type="text" name="phone_number" class="form-control" id="phone-number-input">
-                </div>
-                <div class="form-group">
-                    <label for="username-input">Username</label>
-                    <input type="text" name="username" class="form-control" id="username-input">
-                    <label for="username-input"><small>It will be used to login to your account</small></label>
-                </div>
-                <div class="form-group">
-                    <label for="password-input">Password</label>
-                    <input type="password" name="password" class="form-control" id="password-input">
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password-input">Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" id="confirm-password-input">
+                    <input type="text" name="phone_number" class="form-control" id="phone-number-input" value="<?=$_SESSION['phone_number']?>">
                 </div>
                 <input type="submit" name="submit" class="btn btn-primary" value="Submit">
             </form>

@@ -9,13 +9,13 @@ class UserDB extends Database
     public function validateLogin($username, $password)
     {
         $hashedPassword = $this->createHash($password);
-        $query = "SELECT password FROM users where username = '$username'";
+        $query = "SELECT * FROM users where username = '$username'";
         if($result = mysqli_query(self::$connection, $query))
         {
             if ($row = mysqli_fetch_assoc($result))
             {
                 if($row["password"] == $hashedPassword)
-                    return true;
+                    return $row['user_id'];
                 else
                     return false;
             }
@@ -60,6 +60,36 @@ class UserDB extends Database
         return md5($password);
     }
 
+    public function getProfile(int $user_id)
+    {
+        $query = "SELECT * FROM user_profile WHERE user_id = $user_id LIMIT 1";
+        $result = mysqli_query(self::$connection, $query);
+        if($profile = mysqli_fetch_assoc($result))
+        {
+            return $profile;
+        }
+        else
+            return false;
+
+    }
+
+    public function updateProfile(int $user_id, array $data)
+    {
+        $first_name = $data["first_name"];
+        $last_name = $data["last_name"];
+        $email = $data["email"];
+        $phone_number = $data["phone_number"];
+
+        $query = "UPDATE user_profile ";
+        $query .= "SET first_name = '$first_name', ";
+        $query .= "last_name = '$last_name', ";
+        $query .= "email = '$email', ";
+        $query .= "phone_number = '$phone_number' ";
+        $query .= "WHERE user_id = $user_id;";
+
+        return mysqli_query(self::$connection, $query);
+
+    }
 
 
 }

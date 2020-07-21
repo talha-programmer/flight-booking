@@ -1,3 +1,4 @@
+<?php require_once ("functions.php")?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,16 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".dropdown").hover(function(){
+                var dropdownToggle = $(this).children(".dropdown-toggle");
+                dropdownToggle.attr('aria-expanded', 'true');
+                $(this).addClass('show');
+                $(this).children(".dropdown-menu").addClass('show');
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -24,18 +35,38 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto mr-4">
-                    <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Book Flights</a>
-                    <a class="nav-item nav-link" href="#">About</a>
-
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="login.php">Login</a>
-                    <a class="nav-item nav-link" href="register.php">Register</a>
-                </div>
+                <ul class="navbar-nav ml-auto mr-4">
+                    <li class="nav-item <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'index.php')? 'active': ''?>">
+                        <a class="nav-link" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'book_flight.php')? 'active': ''?>">
+                        <a class="nav-link" href="#">Book Flights</a>
+                    </li>
+                    <li class="nav-item  <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'about.php')? 'active': ''?>">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <?php if(isset($_SESSION['username'])):?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <?=$_SESSION['username']?></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="profile.php">View Profile</a>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </div>
+                        </li>
+                    <?php else:?>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'login.php')? 'active': ''?>" href="login.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'register.php')? 'active': ''?>" href="register.php">Register</a>
+                        </li>
+                    <?php endif;?>
+                </ul>
             </div>
             </div>
         </nav>
+    <?php display_message();?>
 
 

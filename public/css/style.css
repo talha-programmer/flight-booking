@@ -20,6 +20,12 @@ p {
     border-color: #092140fa;
 }
 
+.bi {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
 
 /*--------Home Page-------*/
 #section_1 {
@@ -130,3 +136,4 @@ p {
     color: red;
     font-size: small;
 }
+
