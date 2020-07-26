@@ -20,6 +20,15 @@ p {
     border-color: #092140fa;
 }
 
+.dropdown {
+    border: none;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
+
+/*Bootstrap Icons*/
 .bi {
     width: 1em;
     height: 1em;

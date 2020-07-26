@@ -1,19 +1,18 @@
 <?php
 require_once ("Database.php");
-class UserDB extends Database
-{
+class UserDB extends Database {
     /*This class deals with 2 tables in database:
        1. users
        2. user_profile
     */
-    public function validateLogin($username, $password)
-    {
+    public function validateLogin($username, $password) {
+        $username = self::$mysqli->real_escape_string($username);
+        $password = self::$mysqli->real_escape_string($password);
+
         $hashedPassword = $this->createHash($password);
         $query = "SELECT * FROM users where username = '$username'";
-        if($result = mysqli_query(self::$connection, $query))
-        {
-            if ($row = mysqli_fetch_assoc($result))
-            {
+        if($result = self::$mysqli->query($query)) {
+            if ($row = $result->fetch_assoc()) {
                 if($row["password"] == $hashedPassword)
                     return $row['user_id'];
                 else
@@ -26,26 +25,35 @@ class UserDB extends Database
             return false;
     }
 
-    public function createProfile(array $data)
-    {
-        $username = $data["username"];
-        $password = $this->createHash($data["password"]);
+    public function getUsernames() {
+        $query = "SELECT username FROM users";
+        $result = self::$mysqli->query($query);
+        if($data= $result->fetch_assoc()) {
+            return $data;
+        }
+        else
+            return false;
+    }
 
-        $first_name = $data["first_name"];
-        $last_name = $data["last_name"];
-        $email = $data["email"];
-        $phone_number = $data["phone_number"];
+    public function createProfile(array $data) {
+        $username = $data["username"];
+        $username = self::$mysqli->real_escape_string($username);
+        $password = $this->createHash(self::$mysqli->real_escape_string($data["password"]));
+
+        $first_name = self::$mysqli->real_escape_string($data["first_name"]);
+        $last_name = self::$mysqli->real_escape_string($data["last_name"]);
+        $email = self::$mysqli->real_escape_string($data["email"]);
+        $phone_number = self::$mysqli->real_escape_string($data["phone_number"]);
 
         $query = "INSERT INTO users ";
         $query .= "(username, password) ";
         $query .= "VALUES('$username', '$password');";
-        if($result = mysqli_query(self::$connection, $query))
-        {
-            $user_id = mysqli_insert_id(self::$connection);
+        if($result = self::$mysqli->query($query)) {
+            $user_id = self::$mysqli->insert_id();
             $query2 = "INSERT INTO user_profile ";
             $query2 .= "(user_id, first_name, last_name, email, phone_number) ";
             $query2 .= "VALUES($user_id, '$first_name', '$last_name', '$email', '$phone_number');";
-            if($result = mysqli_query(self::$connection, $query2))
+            if($result = self::$mysqli->query($query2))
                 return true;
 
             else
@@ -55,30 +63,27 @@ class UserDB extends Database
             return false;
     }
 
-    private function createHash($password)
-    {
+    private function createHash($password) {
         return md5($password);
     }
 
-    public function getProfile(int $user_id)
-    {
+    public function getProfile(int $user_id) {
         $query = "SELECT * FROM user_profile WHERE user_id = $user_id LIMIT 1";
-        $result = mysqli_query(self::$connection, $query);
-        if($profile = mysqli_fetch_assoc($result))
-        {
+        $result = self::$mysqli->query($query);
+        if($profile = $result->fetch_assoc()) {
             return $profile;
         }
-        else
+        else {
             return false;
+        }
 
     }
 
-    public function updateProfile(int $user_id, array $data)
-    {
-        $first_name = $data["first_name"];
-        $last_name = $data["last_name"];
-        $email = $data["email"];
-        $phone_number = $data["phone_number"];
+    public function updateProfile(int $user_id, array $data) {
+        $first_name = self::$mysqli->real_escape_string($data["first_name"]);
+        $last_name = self::$mysqli->real_escape_string($data["last_name"]);
+        $email = self::$mysqli->real_escape_string($data["email"]);
+        $phone_number = self::$mysqli->real_escape_string($data["phone_number"]);
 
         $query = "UPDATE user_profile ";
         $query .= "SET first_name = '$first_name', ";
@@ -87,9 +92,13 @@ class UserDB extends Database
         $query .= "phone_number = '$phone_number' ";
         $query .= "WHERE user_id = $user_id;";
 
-        return mysqli_query(self::$connection, $query);
-
+        return self::$mysqli->query($query);
     }
 
+    public function formatName(string $name) {
+        $name = trim($name);
+        $name = ucwords(strtolower($name));
+        return $name;
+    }
 
 }

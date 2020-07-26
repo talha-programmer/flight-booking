@@ -2,12 +2,10 @@
 session_start();
 require_once ('../include/Database/UserDB.php');
 $username = $email = $phone_number = $first_name = $last_name = null;
-if(isset($_SESSION['user_id']))
-{
+if(isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $db = new UserDB();
-    if($profile = $db->getProfile($user_id))
-    {
+    if($profile = $db->getProfile($user_id)) {
         $username = $_SESSION['username'];
         $first_name = $profile['first_name'];
         $last_name = $profile['last_name'];
@@ -19,15 +17,13 @@ if(isset($_SESSION['user_id']))
         $_SESSION['email'] = $email;
         $_SESSION['phone_number'] = $phone_number;
     }
-    else
-    {
+    else {
         $_SESSION['message_error'] = 'error occurred while displaying profile!';
         header('Location: index.php');
         exit;
     }
 }
-else
-{
+else {
     $_SESSION['message_error'] = "You must log in first to access your profile!";
     header("location: login.php");
     exit;
@@ -36,7 +32,7 @@ else
 <?php require_once ('../include/header.php'); ?>
 <div class="container" style="min-height: 83vh;">
     <div class="row">
-        <div class="col-6 ml-auto mr-auto mt-5">
+        <div class="col-sm-7 offset-md-2 offset-lg-3 mt-5">
             <h3>Profile</h3>
             <table class="table">
                 <tr>

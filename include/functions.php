@@ -1,6 +1,5 @@
 <?php
-function display_message()
-{
+function display_message() {
 ?>
     <?php if(isset($_SESSION['message_info'])):?>
         <div class="alert alert-dismissible alert-info mb-0">

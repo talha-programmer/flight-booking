@@ -2,13 +2,11 @@
 <?php
 require_once ("../include/Database/UserDB.php");
 
-if(isset($_POST["submit"]))
-{
+if(isset($_POST["submit"])) {
     $db = new UserDB();
     $username = $_POST["username"];
     $password = $_POST["password"];
-    if($user_id = $db->validateLogin($username,$password))
-    {
+    if($user_id = $db->validateLogin($username,$password)) {
         $_SESSION['message_success'] = "Logged In Successfully!";
         $_SESSION['username'] = $username;
         $_SESSION['user_id'] = $user_id;

@@ -22,6 +22,13 @@
                 $(this).addClass('show');
                 $(this).children(".dropdown-menu").addClass('show');
             });
+            $(".dropdown").mouseleave(function(){
+                var dropdownToggle = $(this).children(".dropdown-toggle");
+                dropdownToggle.attr('aria-expanded', 'false');
+                $(this).removeClass('show');
+                $(this).children(".dropdown-menu").removeClass('show');
+            });
+
         });
     </script>
 
@@ -49,7 +56,7 @@
                 <ul class="navbar-nav ml-auto">
                     <?php if(isset($_SESSION['username'])):?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <?=$_SESSION['username']?></a>
+                            <a class="nav-link dropdown-toggle <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'profile.php')? 'active': ''?>" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <?=$_SESSION['username']?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="profile.php">View Profile</a>
                                 <a class="dropdown-item" href="logout.php">Logout</a>

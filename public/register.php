@@ -2,24 +2,28 @@
 <?php
 require_once ("../include/Database/UserDB.php");
 
-if(isset($_POST["submit"]))
-{
+if(isset($_POST["submit"])) {
     $db = new UserDB();
-    $data = array(
-        "first_name" => $_POST["first_name"],
-        "last_name" => $_POST["last_name"],
-        "email" => $_POST["email"],
-        "phone_number" => $_POST["phone_number"],
-        "username" => $_POST["username"],
-        "password" => $_POST["password"]
-    );
-    if($db->createProfile($data))
-        $_SESSION['message_success'] = "Profile created successfully!";
-    else
-        $_SESSION['message_error'] = "Profile creation failed!";
-
-
-
+    $usernames = $db->getUsernames();
+    $username = $_POST['username'];
+    if(in_array($username, $usernames) ) {
+        $_SESSION['message_error'] = "This username '$username' is already taken. Please choose a different one";
+    }
+    else {
+        $data = array(
+            "first_name" => $db->formatName($_POST["first_name"]),
+            "last_name" => $db->formatName($_POST["last_name"]),
+            "email" => $_POST["email"],
+            "phone_number" => $_POST["phone_number"],
+            "username" => $_POST["username"],
+            "password" => $_POST["password"]
+        );
+        if ($db->createProfile($data)) {
+            $_SESSION['message_success'] = "Profile created successfully!";
+            header("location: index.php");
+        } else
+            $_SESSION['message_error'] = "Profile creation failed!";
+    }
 }
 ?>
 

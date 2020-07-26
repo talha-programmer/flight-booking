@@ -5,16 +5,15 @@ define("DB_PASSWORD", "");
 define("DB_NAME", "flight_booking_system");
 
 
-class Database
-{
-    protected static $connection;
-    public function __construct()
-    {
-        self::$connection  = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
-        if(mysqli_connect_errno())      // Checking for errors in database connection
-        {
+class Database {
+    protected static $mysqli = null;
+    public function __construct() {
+        self::$mysqli  = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+
+        if(self::$mysqli->errno) {     // Checking for errors in database connection
             die("Database connection failed: "  . mysqli_connect_error(). "(" . mysqli_connect_errno() . ")");
         }
     }
+
 
 }
