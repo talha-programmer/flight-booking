@@ -1,4 +1,4 @@
-<?php require_once ("functions.php")?>
+<?php require_once("../include/functions.php") ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script rel="script" type="text/javascript" src="javascript/jquery.min.js"></script>
     <script rel="script" type="text/javascript" src="javascript/bootstrap.min.js"></script>
+
+    <?php if(isset($using_jquery_ui) && $using_jquery_ui == true):?>
+        <!--Including jquery-ui CSS and JS -->
+        <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+        <script src="jquery-ui/jquery-ui.min.js"></script>
+    <?php endif;?>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 

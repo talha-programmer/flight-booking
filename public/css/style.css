@@ -146,3 +146,112 @@ p {
     font-size: small;
 }
 
+/*Flight Booking Form CSS*/
+#booking {
+    font-family: 'Montserrat', sans-serif;
+    margin: 40px 0px;
+}
+
+.booking-form {
+    padding: 0px 40px 40px;
+    max-width: 642px;
+    width: 100%;
+    margin: auto;
+    background: #2d343b;
+}
+
+.booking-form .form-header {
+    padding: 40px;
+    margin: 0px -40px 30px;
+    background: #1a1f24;
+}
+
+.booking-form .form-header h1 {
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 38px;
+    margin: 0;
+    color: #fff;
+}
+
+.booking-form .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.booking-form .form-control {
+    background-color: #1c2126;
+    height: 50px;
+    padding: 7px 20px 0px;
+    border: none;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+}
+
+.booking-form select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.booking-form select.form-control+.select-arrow {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 24px;
+    text-align: center;
+    pointer-events: none;
+    height: 50px;
+    line-height: 50px;
+    color: #2d343b;
+    font-size: 14px;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+    content: '\279C';
+    display: block;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.booking-form .form-label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    text-transform: uppercase;
+    color: #2d343b;
+    font-weight: 700;
+    line-height: 24px;
+    height: 24px;
+    font-size: 16px;
+    pointer-events: none;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.booking-form .form-group.input-not-empty .form-label {
+    top: -10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.booking-form .form-group:not( .input-not-empty) .form-control:not( :focus) {
+    color: transparent;
+}
+
+.booking-form .form-group .form-control:focus+.form-label {
+    top: -10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.booking-form .submit-btn {
+    color: white;
+    background-color: #092140fa;
+    font-weight: 700;
+    height: 50px;
+    border: none;
+    padding: 0px 50px;
+}

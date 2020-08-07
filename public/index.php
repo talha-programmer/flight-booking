@@ -1,5 +1,5 @@
 <?php session_start();?>
-<?php require_once ("../include/header.php"); ?>
+<?php require_once("header.php"); ?>
 
 <div id="section_1">
     <div class="section_1_overlay">
@@ -121,4 +121,4 @@
 
 </div>
 
-<?php require_once ("../include/footer.php"); ?>
+<?php require_once("footer.php"); ?>

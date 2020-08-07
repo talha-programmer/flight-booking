@@ -1,5 +1,6 @@
 <?php
 require_once ("Database.php");
+
 class UserDB extends Database {
     /*This class deals with 2 tables in database:
        1. users

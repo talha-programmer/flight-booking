@@ -24,7 +24,7 @@ if(isset($_POST["submit"])) {
 }
 ?>
 
-<?php require_once ("../include/header.php");?>
+<?php require_once("header.php");?>
 <script type="text/javascript" src="javascript/jquery.validate.min.js"></script>
 <div class="container">
     <div class="row">
@@ -86,4 +86,4 @@ if(isset($_POST["submit"])) {
     });
 </script>
 
-<?php require_once ("../include/footer.php");?>
+<?php require_once("footer.php");?>

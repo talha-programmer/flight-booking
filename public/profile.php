@@ -29,7 +29,7 @@ else {
     exit;
 }
 ?>
-<?php require_once ('../include/header.php'); ?>
+<?php require_once('header.php'); ?>
 <div class="container" style="min-height: 83vh;">
     <div class="row">
         <div class="col-sm-7 offset-md-2 offset-lg-3 mt-5">
@@ -55,4 +55,4 @@ else {
         </div>
     </div>
 </div>
-<?php require_once ('../include/footer.php');?>
+<?php require_once('footer.php');?>
