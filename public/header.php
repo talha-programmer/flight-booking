@@ -53,17 +53,18 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'book_flight.php')? 'active': ''?>">
-                        <a class="nav-link" href="#">Book Flights</a>
+                        <a class="nav-link" href="book_flights.php">Book Flights</a>
                     </li>
-                    <li class="nav-item  <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'about.php')? 'active': ''?>">
+                    <!--<li class="nav-item  <?php /*echo (basename($_SERVER['SCRIPT_NAME']) == 'about.php')? 'active': ''*/?>">
                         <a class="nav-link" href="#">About</a>
-                    </li>
+                    </li>-->
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <?php if(isset($_SESSION['username'])):?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle <?php echo (basename($_SERVER['SCRIPT_NAME']) == 'profile.php')? 'active': ''?>" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <?=$_SESSION['username']?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="dashboard.php">Dashboard</a>
                                 <a class="dropdown-item" href="profile.php">View Profile</a>
                                 <a class="dropdown-item" href="logout.php">Logout</a>
                             </div>

@@ -1,4 +1,6 @@
-<?php $using_jquery_ui = true; ?>
+<?php $using_jquery_ui = true;
+session_start();
+?>
 <?php require_once ('header.php');?>
     <div id="booking" class="section">
         <div class="section-center">

@@ -94,9 +94,46 @@ class BookFlight
         curl_close($curl);
 
         if ($err) {
+            $_SESSION['message_error'] = $err;
             return false;
         } else {
-            return $response;
+            $response = json_decode($response, true);
+
+            $places = array();
+            foreach ($response['Places'] as $place) {
+                $place_name = $place['Name'] . ", " . $place['CountryName'];
+                $places[$place['PlaceId']] = $place_name;
+            }
+
+            $airlines = array();
+            foreach ($response['Carriers'] as $airline) {
+                $airlines[$airline['CarrierId']] = $airline['Name'];
+            }
+
+            $flights = array();
+            $i = 0;
+            foreach ($response['Quotes'] as $quote) {
+                $flights[$i] = array();
+                $flights[$i]['min_price'] = ($quote['MinPrice']);
+                $flights[$i]['is_direct'] = $quote['Direct'];
+                $airline_id = $quote['OutboundLeg']['CarrierIds'][0];
+                $flights[$i]['airline'] = $airlines[$airline_id];
+                $origin_id = $quote['OutboundLeg']['OriginId'];
+                $destination_id = $quote['OutboundLeg']['DestinationId'];
+                $flights[$i]['origin'] = $places[$origin_id];
+                $flights[$i]['destination'] = $places[$destination_id];
+                $departure_date = date("d-m-Y", strtotime($check_in_date));
+                $flights[$i]['departure_date'] = $departure_date;
+                $departure_time = date("H:i",strtotime($quote['QuoteDateTime']));
+                $flights[$i]['departure_time'] = $departure_time;
+                $flights[$i]['currency_symbol'] = $response['Currencies'][0]['Symbol'];
+
+                $i++;
+                if($i>9){
+                    break;
+                }
+            }
+            return $flights;
         }
 
     }
